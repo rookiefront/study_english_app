@@ -72,8 +72,7 @@ export default {
           <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack" v-if="showBack"></image>
         </FyView>
         <FyView style="flex:1;text-align: center">
-<!--          {{$t('global.title')}}-->
-          {{'global.title'}}
+          {{$t('global.title')}}
         </FyView>
         <FyView style="width: 50rpx"></FyView>
       </FyView>

@@ -1,5 +1,4 @@
 // https://uniapp.dcloud.net.cn/tutorial/platform.html#preprocessor
-import {reactive} from "vue";
 
 type UniappBrowser = Record<
   | 'isVue3'
