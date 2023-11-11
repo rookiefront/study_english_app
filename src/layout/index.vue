@@ -48,9 +48,10 @@ const  showBack = computed(() => {
 })
 
 function goPage(row:any){
-  uni.redirectTo({
-    url: row.url
-  })
+  console.log(row)
+  // uni.redirectTo({
+  //   url: row.url
+  // })
 }
 function onBack(){
   uni.navigateBack()

@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <template>
-  <view v-bind="bind">
+  <view :class="bind.class">
     <slot></slot>
   </view>
 </template>

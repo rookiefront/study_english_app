@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+import FyView from "@/component/FyView/index.vue";
 onLaunch(() => {
   console.log("App Launch");
 });
@@ -11,3 +12,8 @@ onHide(() => {
 });
 </script>
 <style></style>
+<template>
+  <FyView>
+    app
+  </FyView>
+</template>

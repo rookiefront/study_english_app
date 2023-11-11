@@ -1,0 +1,65 @@
+{
+  "id": "4208429",
+  "name": "工具app",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "27285460",
+      "name": "语音说话",
+      "font_class": "a-ziyuan667",
+      "unicode": "e796",
+      "unicode_decimal": 59286
+    },
+    {
+      "icon_id": "16545882",
+      "name": "梯形角标",
+      "font_class": "tixingjiaobiao",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
+      "icon_id": "887959",
+      "name": "首页-首页",
+      "font_class": "shouyeshouye",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "5858535",
+      "name": "关于我们",
+      "font_class": "guanyuwomen",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "739107",
+      "name": "二维码",
+      "font_class": "erweima",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "5048420",
+      "name": "美食-咖啡",
+      "font_class": "kafei",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "731099",
+      "name": "后退",
+      "font_class": "guanbi",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "356463",
+      "name": "扫描",
+      "font_class": "saomiao",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    }
+  ]
+}

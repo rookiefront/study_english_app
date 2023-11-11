@@ -1,6 +1,8 @@
 <template>
   <MainLayout>
-    {{$t('qrcode')}}
+    <FyView class="abced">
+      {{$t('soundmark')}}
+    </FyView>
   </MainLayout>
 </template>
 
@@ -8,6 +10,7 @@
 import MainLayout from "@/layout/index.vue";
 import {onMounted} from "vue";
 import {UniappUnit } from "@/utils/UniappUnit";
+import FyView from "@/component/FyView/index.vue";
 
 onMounted(() => {
 
