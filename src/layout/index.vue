@@ -47,9 +47,12 @@ onMounted(async () => {
   statusBar.value = r.statusBar
   className.value = UniappUnit.browser
 
-  // console.log(systemStateStore.isInsideFirstSystem)
   if (systemStateStore.isInsideFirstSystem) {
     uni.hideTabBar()
+    uni.showLoading({
+      mask: true,
+      title: '初始化'
+    })
     if (mvvmData.floor.length > 1){
       for (const mvvmDataKey in mvvmData.floor) {
         if (mvvmDataKey == '0'){
@@ -59,6 +62,9 @@ onMounted(async () => {
       }
       await initSwitch(mvvmData.floor[0].url)
     }
+    setTimeout(() => {
+      uni.hideLoading()
+    },1000)
     systemStateStore.isInsideFirstSystem = false
   }
 
