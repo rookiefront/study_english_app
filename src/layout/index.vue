@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {UniappUnit} from "@/utils/UniappUnit";
 import {computed, onMounted, reactive, ref} from "vue";
-import FyView from "@/component/FyView/index.vue";
 import FyIcon from "@/component/FyIcon/index.vue";
 import {useSystemStateStore} from "@/store/useSystemState";
 
@@ -105,38 +104,39 @@ export default {
 }
 </script>
 <template>
-  <FyView class="main-layout" v-if="barHeight">
-    <FyView :style="{height: barHeight + 'px'}" class="main-bar-header" :class="className"
+  <view class="main-layout" v-if="barHeight">
+    <view :style="{height: barHeight + 'px'}" class="main-bar-header" :class="className"
             style="display: flex;flex-direction: column">
-      <FyView :style="{height: statusBar + 'px'}">
+      <view :style="{height: statusBar + 'px'}">
         &nbsp;
-      </FyView>
-      <FyView style="flex: 1;display: flex;justify-content: space-between;align-items: center">
-        <FyView style="width: 50rpx">
+      </view>
+      <view style="flex: 1;display: flex;justify-content: space-between;align-items: center">
+        <view style="width: 50rpx">
           <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack"
                  v-if="showBack"></image>
-        </FyView>
-        <FyView style="flex:1;text-align: center">
+        </view>
+        <view style="flex:1;text-align: center">
           {{ $t('global.title') }}
-        </FyView>
-        <FyView style="width: 50rpx"></FyView>
-      </FyView>
-    </FyView>
-    <FyView class="main-layout-warp">
+        </view>
+        <view style="width: 50rpx"></view>
+      </view>
+    </view>
+    <view class="main-layout-warp">
       <slot v-if="!systemStateStore.isInsideFirstSystem"></slot>
-    </FyView>
-    <FyView v-if="props.showFloor" class="layout-floor">
-      <FyView v-for="(item) in mvvmData.floor" :key="item.label" class="layout-floor-item" @click="goPage(item)">
+    </view>
+    <view v-if="props.showFloor" class="layout-floor">
+      <view v-for="(item) in mvvmData.floor" :key="item.label" class="layout-floor-item" @click="goPage(item)">
         <FyIcon :type="item.icon" class="c-icon" font-size="60rpx"></FyIcon>
-        <FyView class="c-label">
+        <view class="c-label">
           {{ item.label }}
-        </FyView>
-      </FyView>
-    </FyView>
-  </FyView>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 <style lang="scss">
 $borderColor: #f2f2f2;
+
 .main-layout {
   position: absolute;
   top: 0;
