@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <template>
-  <view :class="bind.class">
+  <view :class="$attrs.class" :style="$attrs.style">
     <slot></slot>
   </view>
 </template>

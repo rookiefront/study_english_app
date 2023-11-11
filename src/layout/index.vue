@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { UniappUnit } from "@/utils/UniappUnit";
+import {UniappUnit} from "@/utils/UniappUnit";
 import {computed, onMounted, reactive, ref} from "vue";
 import FyView from "@/component/FyView/index.vue";
 import FyIcon from "@/component/FyIcon/index.vue";
+import {useSystemStateStore} from "@/store/useSystemState";
 
 const barHeight = ref(0)
 const statusBar = ref(0)
@@ -18,6 +19,7 @@ const props = defineProps({
   }
 })
 const mvvmData = reactive({
+  isApp: false,
   floor: [
     {
       label: '主页',
@@ -28,32 +30,66 @@ const mvvmData = reactive({
       label: '关于',
       url: '/pages/about/index',
       icon: 'icon-guanyuwomen'
+    },
+    {
+      label: '关于2',
+      url: '/pages/about2/index',
+      icon: 'icon-guanyuwomen'
     }
   ]
 })
+const systemStateStore = useSystemStateStore()
+
 onMounted(async () => {
+  // uni.hideTabBar()
   const r = await UniappUnit.getBarHeight()
   barHeight.value = r.customBar
   statusBar.value = r.statusBar
   className.value = UniappUnit.browser
+
+  // console.log(systemStateStore.isInsideFirstSystem)
+  if (systemStateStore.isInsideFirstSystem) {
+    uni.hideTabBar()
+    if (mvvmData.floor.length > 1){
+      for (const mvvmDataKey in mvvmData.floor) {
+        if (mvvmDataKey == '0'){
+          continue
+        }
+        await initSwitch(mvvmData.floor[mvvmDataKey].url)
+      }
+      await initSwitch(mvvmData.floor[0].url)
+    }
+    systemStateStore.isInsideFirstSystem = false
+  }
+
 })
 
-const  showBack = computed(() => {
+async function initSwitch(url: string){
+  await new Promise((resolve) => {
+    uni.switchTab({
+      url: url,
+      success: function (){
+        resolve(true)
+      }
+    })
+  })
+}
+
+const showBack = computed(() => {
   let currentPages = getCurrentPages();
-  console.log(currentPages)
-  if (currentPages.length == 1){
-    return  false
+  if (currentPages.length == 1) {
+    return false
   }
   return true
 })
 
-function goPage(row:any){
-  console.log(row)
-  // uni.redirectTo({
-  //   url: row.url
-  // })
+function goPage(row: any) {
+  uni.switchTab({
+    url: row.url,
+  })
 }
-function onBack(){
+
+function onBack() {
   uni.navigateBack()
 }
 </script>
@@ -64,36 +100,38 @@ export default {
 </script>
 <template>
   <FyView class="main-layout" v-if="barHeight">
-    <FyView :style="{height: barHeight + 'px'}" class="main-bar-header" :class="className"  style="display: flex;flex-direction: column">
+    <FyView :style="{height: barHeight + 'px'}" class="main-bar-header" :class="className"
+            style="display: flex;flex-direction: column">
       <FyView :style="{height: statusBar + 'px'}">
         &nbsp;
       </FyView>
       <FyView style="flex: 1;display: flex;justify-content: space-between;align-items: center">
         <FyView style="width: 50rpx">
-          <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack" v-if="showBack"></image>
+          <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack"
+                 v-if="showBack"></image>
         </FyView>
         <FyView style="flex:1;text-align: center">
-          {{$t('global.title')}}
+          {{ $t('global.title') }}
         </FyView>
         <FyView style="width: 50rpx"></FyView>
       </FyView>
     </FyView>
     <FyView class="main-layout-warp">
-      <slot></slot>
+      <slot v-if="!systemStateStore.isInsideFirstSystem"></slot>
     </FyView>
     <FyView v-if="props.showFloor" class="layout-floor">
       <FyView v-for="(item) in mvvmData.floor" :key="item.label" class="layout-floor-item" @click="goPage(item)">
         <FyIcon :type="item.icon" class="c-icon" font-size="60rpx"></FyIcon>
         <FyView class="c-label">
-          {{item.label}}
+          {{ item.label }}
         </FyView>
       </FyView>
     </FyView>
   </FyView>
 </template>
-<style  lang="scss">
+<style lang="scss">
 $borderColor: #f2f2f2;
-.main-layout{
+.main-layout {
   position: absolute;
   top: 0;
   left: 0;
@@ -102,27 +140,32 @@ $borderColor: #f2f2f2;
   display: flex;
   flex-direction: column;
 }
-.main-bar-header{
+
+.main-bar-header {
   border: 1px solid $borderColor;
 }
-.main-layout-warp{
+
+.main-layout-warp {
   flex: 1;
   display: flex;
   position: relative;
-  padding: 15rpx;
+  padding: 15 rpx;
 }
-.layout-floor{
+
+.layout-floor {
   display: flex;
-  .layout-floor-item{
+
+  .layout-floor-item {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top: 1px solid $borderColor;
-    padding: 10rpx 0;
+    padding: 10 rpx 0;
     border-right: 1px solid $borderColor;
     flex-direction: column;
-    &:last-child{
+
+    &:last-child {
       border-right: unset;
     }
   }
