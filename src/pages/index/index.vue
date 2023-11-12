@@ -1,9 +1,10 @@
 <template>
   <MainLayout>
-    <view class="abced">
-      {{$t('soundmark')}}
-      <text :style="{color: 'red'}"> {{$t('soundmark')}} </text>
-    </view>
+    <web-view src="http://www.baidu.com"></web-view>
+<!--    <view class="abced">-->
+<!--      {{$t('soundmark')}}-->
+<!--      <text :style="{color: 'red'}"> {{$t('soundmark')}} </text>-->
+<!--    </view>-->
   </MainLayout>
 </template>
 

@@ -112,8 +112,7 @@ export default {
       </view>
       <view style="flex: 1;display: flex;justify-content: space-between;align-items: center">
         <view style="width: 50rpx">
-          <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack"
-                 v-if="showBack"></image>
+          <image src="/static/images/back.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx" @click="onBack"  v-if="showBack"></image>
         </view>
         <view style="flex:1;text-align: center">
           {{ $t('global.title') }}
