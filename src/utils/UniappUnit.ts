@@ -21,7 +21,14 @@ type UniappBrowser = Record<
 type _t = (key: string) => string
 export class UniappUnit {
 
+  static getPageEventChannel(){
+    const pages = getCurrentPages();  // 无需import
+    const page = pages[pages.length - 1];
 
+    // @ts-ignore
+    const eventChannel = page.getOpenerEventChannel();
+    return eventChannel
+  }
   static getBarHeight() :Promise<Record<'statusBar' | 'customBar', any>>{
     return new Promise((resolve, reject) => {
       uni.getSystemInfo({

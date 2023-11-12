@@ -6,6 +6,9 @@
 		{
 			"path": "pages/about/index"
 		},
+		{
+			"path": "pages/soundmarkDetails/index"
+		}
 	],
 	"tabBar": {
 		"list": [
@@ -14,6 +17,9 @@
 			},
 			{
 				"pagePath": "pages/about/index"
+			},
+			{
+				"path": "pages/soundmarkDetails/index"
 			}
 		]
 	},

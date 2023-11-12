@@ -35,7 +35,6 @@ const mvvmData = reactive({
 const systemStateStore = useSystemStateStore()
 
 onMounted(async () => {
-  // uni.hideTabBar()
   const r = await UniappUnit.getBarHeight()
   barHeight.value = r.customBar
   statusBar.value = r.statusBar
@@ -86,6 +85,9 @@ const showBack = computed(() => {
 function goPage(row: any) {
   uni.switchTab({
     url: row.url,
+    success: function (){
+      systemStateStore.switchTabBarTotal++
+    }
   })
 }
 
@@ -116,7 +118,9 @@ export default {
       </view>
     </view>
     <view class="main-layout-warp">
-      <slot v-if="!systemStateStore.isInsideFirstSystem"></slot>
+			<scroll-view class="main-layout-warp-scroll" scroll-y="true">
+				<slot v-if="!systemStateStore.isInsideFirstSystem"></slot>
+			</scroll-view>
     </view>
     <view v-if="props.showFloor" class="layout-floor">
       <view v-for="(item) in mvvmData.floor" :key="item.label" class="layout-floor-item" @click="goPage(item)">
@@ -149,7 +153,13 @@ $borderColor: #f2f2f2;
   flex: 1;
   display: flex;
   position: relative;
-  padding: 15 rpx;
+  .main-layout-warp-scroll{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .layout-floor {

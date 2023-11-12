@@ -1,10 +1,15 @@
 <template>
   <MainLayout>
     <view>
-      <view>
-        元音 | 单元音 | 前元音
-      </view>
-      <view>
+      <view v-for="item in mvvmData.soundmark">
+        <view>
+          <text> {{item.label}} </text>
+        </view>
+        <view class="soundmark-row">
+          <view v-for="t in item.value" class="soundmark-row-box" @click="onClickSoundmark(t)">
+            {{t.tag}}
+          </view>
+        </view>
       </view>
     </view>
   </MainLayout>
@@ -232,7 +237,31 @@ const mvvmData = reactive({
     }
   ]
 })
+
+function onClickSoundmark(soundmark){
+  uni.navigateTo({
+    url: '/pages/soundmarkDetails/index',
+    success: function (res){
+      // 通过eventChannel向被打开页面传送数据
+      res.eventChannel.emit('acceptData', soundmark as any)
+    }
+  })
+}
 </script>
 
-<style>
+<style scoped lang="scss">
+.soundmark-row{
+  display: flex;
+  padding: 10rpx;
+  .soundmark-row-box{
+    margin-right: 10px;
+    height: 35rpx;
+    width: 35rpx;
+    padding: 5rpx;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 </style>
