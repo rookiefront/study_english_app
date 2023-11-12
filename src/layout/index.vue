@@ -21,7 +21,7 @@ const mvvmData = reactive({
   isApp: false,
   floor: [
     {
-      label: '主页',
+      label: '音标',
       url: '/pages/index/index',
       icon: 'icon-shouyeshouye'
     },
@@ -30,11 +30,6 @@ const mvvmData = reactive({
       url: '/pages/about/index',
       icon: 'icon-guanyuwomen'
     },
-    {
-      label: '关于2',
-      url: '/pages/about2/index',
-      icon: 'icon-guanyuwomen'
-    }
   ]
 })
 const systemStateStore = useSystemStateStore()

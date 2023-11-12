@@ -6,9 +6,6 @@
 		{
 			"path": "pages/about/index"
 		},
-		{
-			"path": "pages/about2/index"
-		}
 	],
 	"tabBar": {
 		"list": [
@@ -17,9 +14,6 @@
 			},
 			{
 				"pagePath": "pages/about/index"
-			},
-			{
-				"pagePath": "pages/about2/index"
 			}
 		]
 	},
